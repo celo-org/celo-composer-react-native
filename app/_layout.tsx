@@ -1,4 +1,14 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import "@walletconnect/react-native-compat";
+import { WagmiProvider } from "wagmi";
+import { mainnet, polygon, arbitrum, celoAlfajores } from "@wagmi/core/chains";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  createWeb3Modal,
+  defaultWagmiConfig,
+  Web3Modal,
+} from "@web3modal/wagmi-react-native";
+
+//! Web3 Up
 import {
   DarkTheme,
   DefaultTheme,
@@ -7,37 +17,47 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { ThirdwebProvider } from "thirdweb/react";
-import { useColorScheme } from "@/components";
-import { AppUtils } from "@/utils";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+import { useColorScheme } from "@/hooks/useColorScheme";
 
-// const projectId = "YOUR_PROJECT_ID";
+// 0. Setup queryClient
+const queryClient = new QueryClient();
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "/home",
+const projectId = process.env.PROJECT_ID || "a1ca0e06558ccfc78d859bff77e9d666";
+
+const metadata = {
+  name: "Web3Modal RN NFT Minting",
+  description: "Web3Modal RN NFT Minting Tutorial",
+  url: "https://web3modal.com",
+  icons: ["https://avatars.githubusercontent.com/u/37784886"],
+  redirect: {
+    native: "YOUR_APP_SCHEME://",
+    universal: "YOUR_APP_UNIVERSAL_LINK.com",
+  },
 };
+
+const chains = [mainnet, polygon, arbitrum] as const;
+
+const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
+
+// 3. Create modal
+createWeb3Modal({
+  projectId,
+  defaultChain: celoAlfajores,
+  wagmiConfig,
+});
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
+  const colorScheme = useColorScheme();
+  const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-    ...FontAwesome.font,
   });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
 
   useEffect(() => {
     if (loaded) {
@@ -49,36 +69,20 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThirdwebProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="+not-found" />
-          {/* {pages.map((val, i) => (
-            <Stack.Screen
-              key={i}
-              name={val.name}
-              options={{
-                title: val.title,
-                headerShown: false,
-              }}
-            />
-          ))} */}
-        </Stack>
-      </ThemeProvider>
-    </ThirdwebProvider>
+    <QueryClientProvider client={queryClient}>
+      <WagmiProvider config={wagmiConfig}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+        <Web3Modal />
+      </WagmiProvider>
+    </QueryClientProvider>
   );
 }
-
-const pages: { title: string; name: string }[] = [
-  { title: "Home", name: "/dex" },
-  { title: "Login", name: "login/index" },
-  { title: "Welcome", name: "welcome/index" },
-  { title: "Read", name: "read/index" },
-];
