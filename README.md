@@ -1,6 +1,6 @@
 # React Native | Celo Composer
 
-This is a community-created and maintained starter kit for React Native using the wallet connect kit and wagmi.
+This is a community-created and maintained starter kit, designed to help you quickly launch your project on the Celo blockchain. It comes preconfigured with NativeWindCSS for styling, WalletConnect for seamless wallet integration, and Wagmi for handling on-chain transactions.
 
 ## Setup & Installation
 
