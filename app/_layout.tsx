@@ -1,6 +1,7 @@
 import "@walletconnect/react-native-compat";
+import "../global.css"
 import { WagmiProvider } from "wagmi";
-import { mainnet, polygon, arbitrum, celoAlfajores } from "@wagmi/core/chains";
+import {  celoAlfajores, celo } from "@wagmi/core/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   createWeb3Modal,
@@ -39,7 +40,7 @@ const metadata = {
   },
 };
 
-const chains = [mainnet, polygon, arbitrum] as const;
+const chains = [celo, celoAlfajores] as const;
 
 const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata });
 
