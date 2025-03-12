@@ -22,7 +22,7 @@ export default function SignMessage() {
   };
 
   return (
-    <ThemedView style={{marginVertical: 20}}>
+    <ThemedView style={{ marginVertical: 20 }}>
       <ThemedText type="subtitle">Send Celo Token</ThemedText>
 
       <InputField
@@ -33,8 +33,11 @@ export default function SignMessage() {
         secureTextEntry={false}
       />
 
-      <Button title={"Sign message"} onPress={handleSign} />
-
+      <ThemedView
+        style={{ width: "100%", display: "flex", alignItems: "center" }}
+      >
+        <Button title={"Sign message"} onPress={handleSign} />
+      </ThemedView>
       {isSuccess && (
         <ThemedText type="default">
           Transaction sent! Tx Hash: {signature}

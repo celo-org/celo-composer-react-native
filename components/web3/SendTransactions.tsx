@@ -27,7 +27,7 @@ export default function SendTransactions() {
     });
   };
   return (
-    <ThemedView>
+    <ThemedView style={{paddingBottom: 50}}>
       <ThemedText type="subtitle">Send Celo Token</ThemedText>
       <InputField
         label={"Amount"}
@@ -43,7 +43,11 @@ export default function SendTransactions() {
         placeholder={"Enter wallet address"}
         secureTextEntry={false}
       />
-      <Button title={"Send"} onPress={handleSend} />
+      <ThemedView
+        style={{ width: "100%", display: "flex", alignItems: "center" }}
+      >
+        <Button title={"Send"} onPress={handleSend} />
+      </ThemedView>
       {isSuccess && (
         <ThemedText type="default">
           Transaction sent! Tx Hash: {data}
