@@ -22,7 +22,7 @@ export default function SignMessage() {
   };
 
   return (
-    <ThemedView style={{ marginVertical: 20 }}>
+    <ThemedView style={{ marginVertical: 20, width: "100%" }}>
       <ThemedText type="subtitle">Send Celo Token</ThemedText>
 
       <InputField

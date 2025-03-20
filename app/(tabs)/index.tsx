@@ -1,59 +1,46 @@
-import { StyleSheet, Platform, KeyboardAvoidingView, View } from "react-native";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { StyleSheet, View } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import { W3mButton } from "@web3modal/wagmi-react-native";
-import { HelloWave } from "@/components/HelloWave";
 import SendTransactions from "@/components/web3/SendTransactions";
 import SignMessage from "@/components/web3/SignMessage";
+import Wrapper from "@/components/Wrapper";
+import Header from "@/components/Header";
 
 export default function TabTwoScreen() {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <ParallaxScrollView
-        headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
-        headerImage={
-          <IconSymbol
-            size={310}
-            color="#808080"
-            name="chevron.left.forwardslash.chevron.right"
-            style={styles.headerImage}
-          />
-        }
-      >
-        <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">React Native Starterkit</ThemedText>
-        </ThemedView>
-        <ThemedText>
-          Welcome to Celo React Native Starterkit
-          <HelloWave />
-        </ThemedText>
-        <W3mButton
-          connectStyle={{ backgroundColor: "#cdd108" }}
-          label="Connect Wallet"
-          balance="show"
-        />
-        <SignMessage />
-        <View style={{borderWidth: 3, borderColor: "#bebebe"}} />
-        <SendTransactions />
-      </ParallaxScrollView>
-    </KeyboardAvoidingView>
+    <Wrapper>
+      <Header title={"Celo Composer"} />
+      <ThemedView style={styles.titleContainer}>
+        <ThemedText type="title">React Native Starterkit</ThemedText>
+      </ThemedView>
+      <ThemedView style={{ marginBottom: 20 }}>
+        <ThemedText>Welcome to Celo React Native Starterkit</ThemedText>
+      </ThemedView>
+      <W3mButton
+        connectStyle={{ backgroundColor: "#cdd108" }}
+        label="Connect Wallet"
+        balance="show"
+      />
+      <SignMessage />
+      <View
+        style={{ marginVertical: 10, borderColor: "#bebebe", width: "100%" }}
+      />
+      <SendTransactions />
+    </Wrapper>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 100
+    paddingBottom: 100,
   },
   content: {
     flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
     // padding: 20,
   },
   headerImage: {
@@ -61,9 +48,12 @@ const styles = StyleSheet.create({
     bottom: -90,
     left: -35,
     position: "absolute",
+    width: "100%",
   },
   titleContainer: {
     flexDirection: "row",
     gap: 8,
+    width: "100%",
+    marginTop: 20,
   },
 });

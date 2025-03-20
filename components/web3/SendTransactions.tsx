@@ -27,7 +27,7 @@ export default function SendTransactions() {
     });
   };
   return (
-    <ThemedView style={{paddingBottom: 50}}>
+    <ThemedView style={{ paddingBottom: 50, width: "100%" }}>
       <ThemedText type="subtitle">Send Celo Token</ThemedText>
       <InputField
         label={"Amount"}
