@@ -1,13 +1,7 @@
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  ViewStyle,
-} from "react-native";
-import { ReactNode } from "react";
+import { SafeAreaView, ScrollView, StyleSheet, ViewStyle } from "react-native";
+import React, { ReactNode } from "react";
 import { ThemedView } from "./ThemedView";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Wrapper({
   hideScrollView = false,
@@ -18,18 +12,22 @@ export default function Wrapper({
   hideScrollView?: boolean;
 }) {
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1, paddingBottom: 100 }}
+    <SafeAreaView
+      style={[
+        {
+          minHeight: "100%",
+          width: "100%",
+        },
+        props.style,
+      ]}
     >
-      <SafeAreaView
-        style={[
-          {
-            minHeight: "100%",
-            width: "100%",
-          },
-          props.style,
-        ]}
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        bounces={false}
       >
         {hideScrollView ? (
           <ThemedView style={styles.container}>{props.children}</ThemedView>
@@ -43,8 +41,8 @@ export default function Wrapper({
             <ThemedView style={styles.container}>{props.children}</ThemedView>
           </ScrollView>
         )}
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 }
 

@@ -30,8 +30,8 @@ const queryClient = new QueryClient();
 const projectId = process.env.PROJECT_ID || "a1ca0e06558ccfc78d859bff77e9d666";
 
 const metadata = {
-  name: "Web3Modal RN NFT Minting",
-  description: "Web3Modal RN NFT Minting Tutorial",
+  name: "Celo Composer",
+  description: "Celo Composer",
   url: "https://web3modal.com",
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
   redirect: {
