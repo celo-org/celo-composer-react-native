@@ -15,8 +15,8 @@ export default function HomeScreen() {
         <ExternalLink href="https://faucet.celo.org/">
           <ThemedText type="link">Faucet</ThemedText>
         </ExternalLink>
-        <ExternalLink href="https://remix.ethereum.org/#lang=en&optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.26+commit.8a97fa7a.js">
-          <ThemedText type="link">Remix</ThemedText>
+        <ExternalLink href="https://docs.celo.org/developer/deploy/hardhat">
+          <ThemedText type="link">Hardhat</ThemedText>
         </ExternalLink>
         <ExternalLink href="https://x.com/CeloDevs">
           <ThemedText type="link"> Celo Devs</ThemedText>
