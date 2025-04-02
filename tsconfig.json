@@ -1,18 +1,16 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    "declaration": true,
+    "module": "NodeNext",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": false,
+    "target": "es2022",
+    "moduleResolution": "node16",
+    "noImplicitAny": false
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "nativewind-env.d.ts"
-  ]
+  "include": ["./src/**/*"],
+  "ts-node": {
+    "esm": true
+  }
 }
