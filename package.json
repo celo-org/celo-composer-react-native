@@ -17,10 +17,9 @@
     "url": "git+https://github.com/celo-org/svelte-template.git"
   },
   "scripts": {
-    "app:dev": "yarn workspace @celo/sveltekit dev",
-    "app:build": "yarn workspace @celo/sveltekit build",
-    "app:start": "yarn workspace @celo/sveltekit start",
-    "app:lint": "yarn workspace @celo/sveltekit lint",
+    "app:start": "yarn workspace @celo/app start",
+    "app:build": "yarn workspace @celo/app build",
+    "app:lint": "yarn workspace @celo/app lint",
     "hardhat:postinstall": "yarn workspace @celo/hardhat postinstall",
     "hardhat:compile": "yarn workspace @celo/hardhat compile",
     "hardhat:tsc": "yarn workspace @celo/hardhat tsc",
