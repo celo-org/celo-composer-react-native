@@ -1,0 +1,37 @@
+{
+  "author": "celo-sveltekit",
+  "bugs": {
+    "url": "https://github.com/celo-org/svelte-template/issues"
+  },
+  "description": "Custom Celo Composer project.",
+  "homepage": "https://github.com/celo-org/svelte-template/blob/main/README.md",
+  "keywords": [
+    "celo-composer",
+    "celo"
+  ],
+  "license": "MIT",
+  "name": "nextjs-composer",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celo-org/svelte-template.git"
+  },
+  "scripts": {
+    "app:start": "yarn workspace @celo/app start",
+    "app:build": "yarn workspace @celo/app build",
+    "app:lint": "yarn workspace @celo/app lint",
+    "hardhat:postinstall": "yarn workspace @celo/hardhat postinstall",
+    "hardhat:compile": "yarn workspace @celo/hardhat compile",
+    "hardhat:tsc": "yarn workspace @celo/hardhat tsc",
+    "hardhat:build": "yarn workspace @celo/hardhat build",
+    "hardhat:clean": "yarn workspace @celo/hardhat clean",
+    "hardhat:run:node": "yarn workspace @celo/hardhat run:node",
+    "hardhat:test": "yarn workspace @celo/hardhat test",
+    "hardhat:prettier": "yarn workspace @celo/hardhat prettier",
+    "hardhat:sync:abis": "yarn workspace @celo/hardhat sync:abis"
+  },
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ]
+}
